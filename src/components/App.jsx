@@ -9,27 +9,30 @@ export default class MenuExampleVertical extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+	 activeItem: 'settings'
     };
   }
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
     const { activeItem } = this.state
 
     return (
-    <Sidebar as={Menu} width='wide' visible="true" icon='labeled' vertical inverted>
-        <Menu.Item name='inbox' active={activeItem === 'inbox'} onClick={this.handleItemClick}>
+    <Sidebar as={Menu} width='wide' visible="true"  vertical inverted>
+        <Menu.Item name='settings' active={activeItem === 'settings'} onClick={this.handleItemClick}>
 	  <Icon name='settings' />
-          YOUR APP CONFIGURATION
+          Your App Configuration
         </Menu.Item>
 
-        <Menu.Item name='spam' active={activeItem === 'spam'} onClick={this.handleItemClick}>
+        <Menu.Item name='guide' active={activeItem === 'guide'} onClick={this.handleItemClick}>
 	<Icon name='book' />
-          QUICK START GUIDES
+          Quick Start Guides
         </Menu.Item>
 
-        <Menu.Item name='resources' active={activeItem === 'updates'} onClick={this.handleItemClick}>
+        <Menu.Item name='resources' active={activeItem === 'resources'} onClick={this.handleItemClick}>
 	<Icon name='linkify' />
-          USEFUL RESOURCES
+          Useful Resources
         </Menu.Item>
     </Sidebar>
     );
