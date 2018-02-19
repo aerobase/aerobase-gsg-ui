@@ -51,6 +51,8 @@
     "image-webpack-loader": "^4.0.0",
     "jest": "^22.2.1",
     "jshint": "^2.9.5",
+    "material-ui": "^1.0.0-beta.34",
+    "material-ui-icons": "^1.0.0-beta.17",
     "node-sass": "^4.7.2",
     "postcss-loader": "^2.1.0",
     "react": "^16.2.0",
@@ -62,14 +64,14 @@
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^18.0.0",
     "stylelint-webpack-plugin": "^0.10.1",
+    "typeface-roboto": "0.0.54",
     "webpack": "^3.11.0",
     "webpack-dev-middleware": "^2.0.4",
     "webpack-dev-server": "^2.11.1",
     "webpack-merge": "^4.1.1"
   },
+  "postcss": {},
   "dependencies": {
-    "semantic-ui-css": "^2.2.14",
-    "semantic-ui-react": "^0.78.2"
-  },
-  "postcss": {}
+    "prop-types": "latest"
+  }
 }
