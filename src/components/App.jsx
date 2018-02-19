@@ -10,11 +10,32 @@ import IconButton from 'material-ui/IconButton';
 import Hidden from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
 import MenuIcon from 'material-ui-icons/Menu';
+import Grid from 'material-ui/Grid';
+import {MuiThemeProvider} from 'material-ui/styles';
 
-import {mailFolderListItems, otherMailFolderListItems} from './tileData';
+import {menuListItems} from './tileData';
 
 const drawerWidth = 300;
 
+const themeLight = createMuiTheme({
+    palette: {
+        type: 'light', // Switching the dark mode on is a single property value change.
+    },
+});
+
+const themeDark = createMuiTheme({
+    palette: {
+        type: 'dark', // Switching the dark mode on is a single property value change.
+    },
+    overrides: {
+        MuiDrawer: {
+            // Name of the styleSheet
+            docked: {
+                height: '100%',
+            },
+        },
+    },
+});
 
 const styles = theme => ({
     root: {
@@ -22,7 +43,9 @@ const styles = theme => ({
         height: '100%',
         zIndex: 1,
         overflow: 'hidden',
+        flexGrow: 1,
     },
+
     appFrame: {
         position: 'relative',
         display: 'flex',
@@ -82,16 +105,15 @@ class ResponsiveDrawer extends React.Component {
             <div>
                 <div className={classes.drawerHeader}/>
                 <Divider/>
-                <List>{mailFolderListItems}</List>
+                <List>{menuListItems}</List>
                 <Divider/>
-                <List>{otherMailFolderListItems}</List>
             </div>
         );
 
         return (
             <div className={classes.root}>
                 <div className={classes.appFrame}>
-                    <AppBar className={classes.appBar}>
+                    <AppBar className={classes.appBar} color="default">
                         <Toolbar>
                             <IconButton
                                 color="inherit"
@@ -102,42 +124,58 @@ class ResponsiveDrawer extends React.Component {
                                 <MenuIcon/>
                             </IconButton>
                             <Typography variant="title" color="inherit" noWrap>
-                                Responsive drawer
+                                Getting Started
                             </Typography>
                         </Toolbar>
                     </AppBar>
-                    <Hidden mdUp>
-                        <Drawer
-                            variant="temporary"
-                            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                            open={this.state.mobileOpen}
-                            classes={{
-                                paper: classes.drawerPaper,
-                            }}
-                            onClose={this.handleDrawerToggle}
-                            ModalProps={{
-                                keepMounted: true, // Better open performance on mobile.
-                            }}
-                        >
-                            {drawer}
-                        </Drawer>
-                    </Hidden>
-                    <Hidden smDown implementation="css">
-                        <Drawer
-                            variant="permanent"
-                            open
-                            classes={{
-                                paper: classes.drawerPaper,
-                            }}
-                        >
-                            {drawer}
-                        </Drawer>
-                    </Hidden>
+                    <MuiThemeProvider theme={themeDark}>
+                        <Hidden mdUp>
+                            <Drawer
+                                variant="temporary"
+                                anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                                open={this.state.mobileOpen}
+                                classes={{
+                                    paper: classes.drawerPaper,
+                                }}
+                                onClose={this.handleDrawerToggle}
+                                ModalProps={{
+                                    keepMounted: true, // Better open performance on mobile.
+                                }}
+                            >
+                                {drawer}
+                            </Drawer>
+                        </Hidden>
+                        <Hidden smDown implementation="css">
+                            <Drawer
+                                variant="permanent"
+                                open
+                                classes={{
+                                    paper: classes.drawerPaper,
+                                }}
+                            >
+                                {drawer}
+                            </Drawer>
+                        </Hidden>
+                    </MuiThemeProvider>
 
+                    <MuiThemeProvider theme={themeLight}>
+                        <main className={classes.content}>
+                            <Grid container className={classes.root} justify="left" spacing="16">
+                                <Grid key="gs" item xs={12}>
+                                    <Typography
+                                        variant="body1">{'To be able to use the'}
+                                        <span>Aerobase</span> {'Server you need to create a PushApplication and at least one Variant.'}
+                                    </Typography>
+                                    <Typography
+                                        variant="body1"> {'The wizard is launched when clicking the Create Application button on the PUSH NOTIFICATION page:'}</Typography>
 
-                    <main className={classes.content}>
-                        <Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>
-                    </main>
+                                </Grid>
+                                <Grid key="root-endpoint" item xs={12} sm={6}>
+                                </Grid>
+                            </Grid>
+                            <Divider/>
+                        </main>
+                    </MuiThemeProvider>
 
                 </div>
             </div>

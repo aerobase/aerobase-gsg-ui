@@ -6,27 +6,13 @@ import App from "components/App";
 
 const rootEl = document.getElementById("root");
 
-const theme = createMuiTheme({
-    palette: {
-        type: 'dark', // Switching the dark mode on is a single property value change.
-    },
-    overrides: {
-        MuiDrawer: {
-            // Name of the styleSheet
-            docked: {
-                height: '100%',
-            },
-        },
-    },
-});
 
 const renderComponent = (Component) => {
     ReactDOM.render(
-        <MuiThemeProvider theme={theme}>
-            <AppContainer>
-                <Component/>
-            </AppContainer>
-        </MuiThemeProvider>,
+        <AppContainer>
+            <Component/>
+        </AppContainer>
+        ,
         rootEl
     );
 };
