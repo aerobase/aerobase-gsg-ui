@@ -1,37 +1,104 @@
-import React, { Component } from 'react'
-import { Label, Sidebar, Menu, Icon } from 'semantic-ui-react'
+import React, {Component} from 'react'
+import PropTypes from "prop-types";
+import {MuiThemeProvider} from 'material-ui/styles';
+import {createMuiTheme, withStyles} from 'material-ui/styles';
+import Drawer from 'material-ui/Drawer';
+import Hidden from 'material-ui/Hidden';
+import Avatar from 'material-ui/Avatar';
+import Divider from 'material-ui/Divider';
+import List from 'material-ui/List';
+import {menuListItems} from './SideBarMenuItems';
+import FolderIcon from 'material-ui-icons/Folder';
 
-export default class SideBarMenu extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-	 activeItem: 'settings'
-    };
-  }
+const drawerWidth = 300;
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+const themeDark = createMuiTheme({
+    palette: {
+        type: 'dark', // Switching the dark mode on is a single property value change.
+    },
+    overrides: {
+        MuiDrawer: {
+            // Name of the styleSheet
+            docked: {
+                height: '100%',
+            },
+        },
+    },
+});
 
-  render() {
-    const { activeItem } = this.state
+const styles = theme => ({
+    drawerHeader: theme.mixins.toolbar,
 
-    return (
-    <Sidebar as={Menu} width='wide' visible="true" animation="push" vertical inverted>
-        <Menu.Item name='settings' active={activeItem === 'settings'} onClick={this.handleItemClick}>
-	  <Icon name='settings' />
-          Your App Configuration
-        </Menu.Item>
+    drawerPaper: {
+        width: 300,
+        height: '100%',
+        [theme.breakpoints.up('md')]: {
+            width: drawerWidth,
+            position: 'relative',
+            height: '100%',
+        },
+    },
+});
 
-        <Menu.Item name='guide' active={activeItem === 'guide'} onClick={this.handleItemClick}>
-	<Icon name='book' />
-          Quick Start Guides
-        </Menu.Item>
+class SideBarMenu extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-        <Menu.Item name='resources' active={activeItem === 'resources'} onClick={this.handleItemClick}>
-	<Icon name='linkify' />
-          Useful Resources
-        </Menu.Item>
-    </Sidebar>
-    );
-  }
+    render() {
+        const {classes, theme} = this.props;
+
+        const drawer = (
+            <div>
+                <div className={classes.drawerHeader}>
+                    <Avatar className={classes.avatar}>
+                        <FolderIcon />
+                    </Avatar>
+                </div>
+                <Divider/>
+                <List>{menuListItems}</List>
+                <Divider/>
+            </div>
+        );
+
+        return (
+            <MuiThemeProvider theme={themeDark}>
+                <Hidden mdUp>
+                    <Drawer
+                        variant="temporary"
+                        anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                        open={this.props.mobileOpen}
+                        classes={{
+                            paper: classes.drawerPaper,
+                        }}
+                        onClose={()=>this.props.handleDrawerToggle()}
+                        ModalProps={{
+                            keepMounted: true, // Better open performance on mobile.
+                        }}
+                    >
+                        {drawer}
+                    </Drawer>
+                </Hidden>
+                <Hidden smDown implementation="css">
+                    <Drawer
+                        variant="permanent"
+                        open
+                        classes={{
+                            paper: classes.drawerPaper,
+                        }}
+                    >
+                        {drawer}
+                    </Drawer>
+                </Hidden>
+            </MuiThemeProvider>
+        );
+    }
 }
+
+SideBarMenu.propTypes = {
+    classes: PropTypes.object.isRequired,
+    theme: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles, {withTheme: true})(SideBarMenu);

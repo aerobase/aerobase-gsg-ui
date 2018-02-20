@@ -1,39 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {createMuiTheme, withStyles} from 'material-ui/styles';
-import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import List from 'material-ui/List';
+import AppBarMenu from './AppBarMenu';
+import SideBarMenu from './SideBarMenu';
 import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import Hidden from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
-import MenuIcon from 'material-ui-icons/Menu';
 import Grid from 'material-ui/Grid';
 import {MuiThemeProvider} from 'material-ui/styles';
-
-import {menuListItems} from './tileData';
-
-const drawerWidth = 300;
 
 const themeLight = createMuiTheme({
     palette: {
         type: 'light', // Switching the dark mode on is a single property value change.
-    },
-});
-
-const themeDark = createMuiTheme({
-    palette: {
-        type: 'dark', // Switching the dark mode on is a single property value change.
-    },
-    overrides: {
-        MuiDrawer: {
-            // Name of the styleSheet
-            docked: {
-                height: '100%',
-            },
-        },
     },
 });
 
@@ -52,29 +29,6 @@ const styles = theme => ({
         width: '100%',
         height: '100%',
     },
-    appBar: {
-        position: 'absolute',
-        marginLeft: drawerWidth,
-        [theme.breakpoints.up('md')]: {
-            width: `calc(100% - ${drawerWidth}px)`,
-        },
-    },
-    navIconHide: {
-        [theme.breakpoints.up('md')]: {
-            display: 'none',
-        },
-    },
-    drawerHeader: theme.mixins.toolbar,
-
-    drawerPaper: {
-        width: 300,
-        height: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: drawerWidth,
-            position: 'relative',
-            height: '100%',
-        },
-    },
 
     content: {
         backgroundColor: theme.palette.background.default,
@@ -89,7 +43,12 @@ const styles = theme => ({
     },
 });
 
-class ResponsiveDrawer extends React.Component {
+class AppDrawer extends React.Component {
+    constructor(props){
+        super(props);
+        this.handleDrawerToggle = this.handleDrawerToggle.bind(this);
+    }
+
     state = {
         mobileOpen: false,
     };
@@ -101,62 +60,12 @@ class ResponsiveDrawer extends React.Component {
     render() {
         const {classes, theme} = this.props;
 
-        const drawer = (
-            <div>
-                <div className={classes.drawerHeader}/>
-                <Divider/>
-                <List>{menuListItems}</List>
-                <Divider/>
-            </div>
-        );
-
         return (
             <div className={classes.root}>
                 <div className={classes.appFrame}>
-                    <AppBar className={classes.appBar} color="default">
-                        <Toolbar>
-                            <IconButton
-                                color="inherit"
-                                aria-label="Menu"
-                                onClick={this.handleDrawerToggle}
-                                className={classes.navIconHide}
-                            >
-                                <MenuIcon/>
-                            </IconButton>
-                            <Typography variant="title" color="inherit" noWrap>
-                                Getting Started
-                            </Typography>
-                        </Toolbar>
-                    </AppBar>
-                    <MuiThemeProvider theme={themeDark}>
-                        <Hidden mdUp>
-                            <Drawer
-                                variant="temporary"
-                                anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                                open={this.state.mobileOpen}
-                                classes={{
-                                    paper: classes.drawerPaper,
-                                }}
-                                onClose={this.handleDrawerToggle}
-                                ModalProps={{
-                                    keepMounted: true, // Better open performance on mobile.
-                                }}
-                            >
-                                {drawer}
-                            </Drawer>
-                        </Hidden>
-                        <Hidden smDown implementation="css">
-                            <Drawer
-                                variant="permanent"
-                                open
-                                classes={{
-                                    paper: classes.drawerPaper,
-                                }}
-                            >
-                                {drawer}
-                            </Drawer>
-                        </Hidden>
-                    </MuiThemeProvider>
+                    <AppBarMenu handleDrawerToggle={this.handleDrawerToggle}/>
+
+                    <SideBarMenu handleDrawerToggle={this.handleDrawerToggle} mobileOpen={this.state.mobileOpen}/>
 
                     <MuiThemeProvider theme={themeLight}>
                         <main className={classes.content}>
@@ -183,9 +92,9 @@ class ResponsiveDrawer extends React.Component {
     }
 }
 
-ResponsiveDrawer.propTypes = {
+AppDrawer.propTypes = {
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, {withTheme: true})(ResponsiveDrawer);
+export default withStyles(styles, {withTheme: true})(AppDrawer);
