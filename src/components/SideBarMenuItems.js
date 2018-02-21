@@ -6,21 +6,22 @@ import BookIcon from 'material-ui-icons/Book';
 import LinkIcon from 'material-ui-icons/Link';
 
 export const menuListItems = (
+
     <div>
         <MenuList>
-            <MenuItem selected={true}>
+            <MenuItem name='settings' selected='true' onClick={this.handleItemClick}>
                 <ListItemIcon>
                     <SettingsIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Your App Configuration"/>
             </MenuItem>
-            <MenuItem>
+            <MenuItem name='guide' onClick={this.handleItemClick}>
                 <ListItemIcon>
                     <BookIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Quick Start Guides"/>
             </MenuItem>
-            <MenuItem button>
+            <MenuItem name='resources' onClick={this.handleItemClick}>
                 <ListItemIcon>
                     <LinkIcon/>
                 </ListItemIcon>

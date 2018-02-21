@@ -7,8 +7,9 @@ import Hidden from 'material-ui/Hidden';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import List from 'material-ui/List';
+import Grid from 'material-ui/Grid';
 import {menuListItems} from './SideBarMenuItems';
-import FolderIcon from 'material-ui-icons/Folder';
+import UserIcon from 'material-ui-icons/AccountBox';
 
 
 const drawerWidth = 300;
@@ -39,22 +40,36 @@ const styles = theme => ({
             height: '100%',
         },
     },
+
+    avatar: {
+        paddingTop: '13px',
+        paddingLeft: '8px',
+    },
 });
 
 class SideBarMenu extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            activeItem: 'settings'
+        };
+
     }
 
+    handleItemClick = (e, {name}) => this.setState({activeItem: name})
+
     render() {
+        const {activeItem} = this.state;
         const {classes, theme} = this.props;
 
         const drawer = (
             <div>
                 <div className={classes.drawerHeader}>
-                    <Avatar className={classes.avatar}>
-                        <FolderIcon />
-                    </Avatar>
+                    <div className={classes.avatar}>
+                        <Avatar >
+                            <UserIcon/>
+                        </Avatar>
+                    </div>
                 </div>
                 <Divider/>
                 <List>{menuListItems}</List>
@@ -72,7 +87,7 @@ class SideBarMenu extends React.Component {
                         classes={{
                             paper: classes.drawerPaper,
                         }}
-                        onClose={()=>this.props.handleDrawerToggle()}
+                        onClose={() => this.props.handleDrawerToggle()}
                         ModalProps={{
                             keepMounted: true, // Better open performance on mobile.
                         }}
