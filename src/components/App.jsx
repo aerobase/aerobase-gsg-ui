@@ -11,6 +11,8 @@ import {MuiThemeProvider} from 'material-ui/styles';
 import {Card} from 'semantic-ui-react'
 import WebIcon from 'material-ui-icons/Language';
 import AndroidIcon from 'material-ui-icons/Android';
+import PhoneIphone from 'material-ui-icons/PhoneIphone';
+import Description from 'material-ui-icons/Description';
 
 
 const themeLight = createMuiTheme({
@@ -55,6 +57,11 @@ const styles = theme => ({
             height: 'calc(100% - 64px)',
             marginTop: 64,
         },
+    },
+
+    cardTitle: {
+        paddingTop: '2px',
+        paddingLeft: '4px',
     },
 });
 
@@ -111,16 +118,17 @@ class AppDrawer extends React.Component {
                                     </Grid>
                                     <Grid key="qsg1" item xs={8}>
                                         <Card fluid={true}
-                                              href='#card-example-link-card'
+                                              href='https://aerobase.atlassian.net/wiki/display/ARB/JavaScript'
+                                              target='_blank'
                                         >
                                             <Card.Content>
                                                 <Card.Header>
 
-                                                    <Grid container key="web-container" spacing={12} align="center">
+                                                    <Grid container key="web-container" spacing="2">
                                                         <Grid item>
                                                             <WebIcon/>
                                                         </Grid>
-                                                        <Grid item>
+                                                        <Grid item className={classes.cardTitle}>
                                                             <span>Web</span>
                                                         </Grid>
                                                     </Grid>
@@ -134,13 +142,20 @@ class AppDrawer extends React.Component {
                                     </Grid>
                                     <Grid key="qsg2" item xs={8}>
                                         <Card fluid={true}
-                                              href='#card-example-link-card'>
+                                              href='https://aerobase.atlassian.net/wiki/display/ARB/Android'
+                                              target='_blank'
+                                        >
                                             <Card.Content>
                                                 <Card.Header>
-                                                    <div>
-                                                        <AndroidIcon/>
-                                                        Android
-                                                    </div>
+                                                    <Grid container key="android-container" spacing="2">
+                                                        <Grid item>
+                                                            <AndroidIcon/>
+                                                        </Grid>
+                                                        <Grid item className={classes.cardTitle}>
+                                                            <span>Android</span>
+                                                        </Grid>
+                                                    </Grid>
+
                                                 </Card.Header>
                                                 <Card.Meta>
                                                     Build an app for Android.
@@ -150,13 +165,20 @@ class AppDrawer extends React.Component {
 
                                     </Grid>
                                     <Grid key="qsg3" item xs={8}>
-                                        <Card fluid={true} href='#card-example-link-card'>
+                                        <Card fluid={true}
+                                              href='https://aerobase.atlassian.net/wiki/display/ARB/iOS'
+                                              target='_blank'
+                                        >
                                             <Card.Content>
                                                 <Card.Header>
-                                                    <div>
-                                                        <AndroidIcon/>
-                                                        iOs
-                                                    </div>
+                                                    <Grid container key="ios-container" spacing="2">
+                                                        <Grid item>
+                                                            <PhoneIphone/>
+                                                        </Grid>
+                                                        <Grid item className={classes.cardTitle}>
+                                                            <span>iOs</span>
+                                                        </Grid>
+                                                    </Grid>
                                                 </Card.Header>
                                                 <Card.Meta>
                                                     Build an app for iOs.
@@ -180,58 +202,137 @@ class AppDrawer extends React.Component {
                                         <Card fluid={true}
                                               href='https://aerobase.atlassian.net/wiki/spaces/ARB/overview'
                                               target='_blank'
-                                              header='Documentation'
-                                              meta='Understand how Aerobase works'
-                                              description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
                                         >
+                                            <Card.Content>
+                                                <Card.Header>
+                                                    <Grid container key="android-container" spacing="2">
+                                                        <Grid item>
+                                                            <i class="large clone icon"/>
+                                                        </Grid>
+                                                        <Grid item className={classes.cardTitle}>
+                                                            <span>Documentation</span>
+                                                        </Grid>
+                                                    </Grid>
+
+                                                </Card.Header>
+                                                <Card.Meta>
+                                                    Understand how Aerobase works.
+                                                </Card.Meta>
+                                            </Card.Content>
 
                                         </Card>
                                     </Grid>
                                     <Grid key="ur2" item xs={6} sm={3}>
                                         <Card fluid={true}
                                               href='https://aerobase.atlassian.net/projects/ARB?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page'
-                                              target='_blank'
-                                              header='Release Notes'
-                                              meta='Stay on top of our latest features'
-                                              description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
-                                        />
+                                              target='_blank'>
+                                            <Card.Content>
+                                                <Card.Header>
+                                                    <Grid container key="android-container" spacing="2">
+                                                        <Grid item>
+                                                            <i class="large sticky note icon"/>
+                                                        </Grid>
+                                                        <Grid item className={classes.cardTitle}>
+                                                            <span>Release Notes</span>
+                                                        </Grid>
+                                                    </Grid>
+
+                                                </Card.Header>
+                                                <Card.Meta>
+                                                    Stay on top of our latest features
+                                                </Card.Meta>
+                                            </Card.Content>
+                                        </Card>
                                     </Grid>
                                     <Grid key="ur3" item xs={6} sm={3}>
                                         <Card fluid={true}
-                                              href='#card-example-link-card'
-                                              target='_blank'
-                                              header='Stack Overflow'
-                                              meta='Ask any questions and tag us'
-                                              description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
-                                        />
-                                    </Grid>
+                                              href='http://stackoverflow.com/questions/tagged/aerobase'
+                                              target='_blank'>
+                                            <Card.Content>
+                                                <Card.Header>
+                                                    <Grid container key="android-container" spacing="2">
+                                                        <Grid item>
+                                                            <i class="large stack overflow icon"/>
+                                                        </Grid>
+                                                        <Grid item className={classes.cardTitle}>
+                                                            <span>Stack Overflow</span>
+                                                        </Grid>
+                                                    </Grid>
 
+                                                </Card.Header>
+                                                <Card.Meta>
+                                                    Ask any questions and tag us
+                                                </Card.Meta>
+                                            </Card.Content>
+                                        </Card>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid container className={classes.container} justify="left" spacing="16">
                                     <Grid key="ur1" item xs={6} sm={3}>
                                         <Card fluid={true}
-                                              href='https://aerobase.atlassian.net/wiki/spaces/ARB/overview'
-                                              target='_blank'
-                                              header='Documentation'
-                                              meta='Understand how Aerobase works'
-                                              description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
-                                        />
+                                              href='https://github.com/Aerobase'
+                                              target='_blank'>
+                                            <Card.Content>
+                                                <Card.Header>
+                                                    <Grid container key="android-container" spacing="2">
+                                                        <Grid item>
+                                                            <i class="large github icon"/>
+                                                        </Grid>
+                                                        <Grid item className={classes.cardTitle}>
+                                                            <span>GitHub</span>
+                                                        </Grid>
+                                                    </Grid>
+
+                                                </Card.Header>
+                                                <Card.Meta>
+                                                    Contribute to Aerobase
+                                                </Card.Meta>
+                                            </Card.Content>
+                                        </Card>
                                     </Grid>
                                     <Grid key="ur2" item xs={6} sm={3}>
                                         <Card fluid={true}
-                                              href='https://aerobase.atlassian.net/projects/ARB?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page'
-                                              target='_blank'
-                                              header='Release Notes'
-                                              meta='Stay on top of our latest features'
-                                              description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
-                                        />
+                                              href='https://aerobase.slack.com/'
+                                              target='_blank'>
+                                            <Card.Content>
+                                                <Card.Header>
+                                                    <Grid container key="android-container" spacing="2">
+                                                        <Grid item>
+                                                            <i class="large slack icon"/>
+                                                        </Grid>
+                                                        <Grid item className={classes.cardTitle}>
+                                                            <span>Slack</span>
+                                                        </Grid>
+                                                    </Grid>
+
+                                                </Card.Header>
+                                                <Card.Meta>
+                                                    Connects with Aerobase developers
+                                                </Card.Meta>
+                                            </Card.Content>
+                                        </Card>
                                     </Grid>
                                     <Grid key="ur3" item xs={6} sm={3}>
                                         <Card fluid={true}
-                                              href='#card-example-link-card'
-                                              target='_blank'
-                                              header='Stack Overflow'
-                                              meta='Ask any questions and tag us'
-                                              description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
-                                        />
+                                              href='mailto:support@aerobase.io'>
+                                            <Card.Content>
+                                                <Card.Header>
+                                                    <Grid container key="android-container" spacing="2">
+                                                        <Grid item>
+                                                            <i class="large envelope icon"/>
+                                                        </Grid>
+                                                        <Grid item className={classes.cardTitle}>
+                                                            <span>Email</span>
+                                                        </Grid>
+                                                    </Grid>
+
+                                                </Card.Header>
+                                                <Card.Meta>
+                                                    Get direct support from our developers
+                                                </Card.Meta>
+                                            </Card.Content>
+                                        </Card>
                                     </Grid>
                                 </Grid>
                             </Grid>
