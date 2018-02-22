@@ -8,9 +8,14 @@ import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import List from 'material-ui/List';
 import Grid from 'material-ui/Grid';
-import {menuListItems} from './SideBarMenuItems';
+import Typography from 'material-ui/Typography';
+import {ListItemIcon, ListItemText} from 'material-ui/List';
+import {MenuList, MenuItem} from 'material-ui/Menu';
+import SettingsIcon from 'material-ui-icons/Settings';
+import BookIcon from 'material-ui-icons/Book';
+import LinkIcon from 'material-ui-icons/Link';
 import UserIcon from 'material-ui-icons/AccountBox';
-
+import config from 'react-global-configuration';
 
 const drawerWidth = 300;
 
@@ -45,11 +50,21 @@ const styles = theme => ({
         paddingTop: '13px',
         paddingLeft: '8px',
     },
+
+    userTitle:{
+        paddingTop: '10px',
+        paddingLeft: '10px',
+    },
+
+    chromeIssueMargin:{
+        margin: '1px',
+    },
 });
 
 class SideBarMenu extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             activeItem: 'settings'
         };
@@ -66,14 +81,46 @@ class SideBarMenu extends React.Component {
             <div>
                 <div className={classes.drawerHeader}>
                     <div className={classes.avatar}>
-                        <Avatar >
-                            <UserIcon/>
-                        </Avatar>
+                        <Grid container key="avatar" spacing="2">
+                            <Grid item>
+                                <Avatar>
+                                    <UserIcon/>
+                                </Avatar>
+                            </Grid>
+                            <Grid item className={classes.cardTitle}>
+                                <Typography className={classes.userTitle}
+                                    variant="title">{this.props.username}</Typography>
+                            </Grid>
+                        </Grid>
                     </div>
                 </div>
-                <Divider/>
-                <List>{menuListItems}</List>
-                <Divider/>
+
+                <Divider className={classes.chromeIssueMargin}/>
+
+                <List>
+                    <MenuList>
+                        <MenuItem name='settings' selected={activeItem === 'settings'} onClick={this.handleItemClick}>
+                            <ListItemIcon>
+                                <SettingsIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary="Your App Configuration"/>
+                        </MenuItem>
+                        <MenuItem name='guide' selected={activeItem === 'guide'} onClick={this.handleItemClick}>
+                            <ListItemIcon>
+                                <BookIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary="Quick Start Guides"/>
+                        </MenuItem>
+                        <MenuItem name='resources' selected={activeItem === 'resources'} onClick={this.handleItemClick}>
+                            <ListItemIcon>
+                                <LinkIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary="Useful Resources"/>
+                        </MenuItem>
+                    </MenuList>
+                </List>
+
+                <Divider className={classes.chromeIssueMargin}/>
             </div>
         );
 

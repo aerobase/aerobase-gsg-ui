@@ -12,8 +12,6 @@ import {Card} from 'semantic-ui-react'
 import WebIcon from 'material-ui-icons/Language';
 import AndroidIcon from 'material-ui-icons/Android';
 import PhoneIphone from 'material-ui-icons/PhoneIphone';
-import Description from 'material-ui-icons/Description';
-
 
 const themeLight = createMuiTheme({
     palette: {
@@ -32,12 +30,8 @@ const styles = theme => ({
     container: {
         width: '100%',
         flexGrow: 1,
-        paddingTop: '10px'
-    },
-
-    divider: {
-        marginTop: '10px',
-        marginBottom: '10px',
+        paddingTop: '10px',
+        paddingBottom: '20px',
     },
 
     appFrame: {
@@ -59,12 +53,16 @@ const styles = theme => ({
         },
     },
 
+    chromeIssueMargin:{
+      margin: '1px',
+    },
+
     cardTitle: {
         paddingTop: '2px',
         paddingLeft: '4px',
     },
-});
 
+});
 
 class AppDrawer extends React.Component {
     constructor(props) {
@@ -88,7 +86,7 @@ class AppDrawer extends React.Component {
                 <div className={classes.appFrame}>
                     <AppBarMenu handleDrawerToggle={this.handleDrawerToggle}/>
 
-                    <SideBarMenu handleDrawerToggle={this.handleDrawerToggle} mobileOpen={this.state.mobileOpen}/>
+                    <SideBarMenu handleDrawerToggle={this.handleDrawerToggle} mobileOpen={this.state.mobileOpen} username={this.props.username}/>
 
                     <MuiThemeProvider theme={themeLight}>
                         <main className={classes.content}>
@@ -98,7 +96,7 @@ class AppDrawer extends React.Component {
                                         variant="body1">{'To be able to use the Aerobase Server you need to create a PushApplication and at least one Variant.'}
                                     </Typography>
                                     <Typography
-                                        variant="body1">
+                                        variant="body2">
                                         {'The wizard is launched when clicking the Create Application button on the PUSH NOTIFICATION page:'}
                                     </Typography>
                                 </Grid>
@@ -108,7 +106,7 @@ class AppDrawer extends React.Component {
                                 </Grid>
 
                                 <Grid key="divider1" item xs={12}>
-                                    <Divider className={classes.divider}/>
+                                    <Divider className={classes.chromeIssueMargin}/>
                                 </Grid>
 
                                 <Grid container className={classes.container} justify="left" spacing="16">
@@ -189,7 +187,7 @@ class AppDrawer extends React.Component {
                                 </Grid>
 
                                 <Grid key="divider2" item xs={12}>
-                                    <Divider className={classes.divider}/>
+                                    <Divider className={classes.chromeIssueMargin}/>
                                 </Grid>
 
                                 <Grid container className={classes.container} justify="left" spacing="16">

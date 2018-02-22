@@ -6,6 +6,7 @@ import Input, {InputLabel, InputAdornment} from 'material-ui/Input';
 import {FormControl, FormHelperText} from 'material-ui/Form';
 import Tooltip from 'material-ui/Tooltip';
 import {withStyles} from "material-ui/styles";
+import Clipboard from 'react-clipboard.js'
 
 import Visibility from 'material-ui-icons/ContentCopy';
 
@@ -21,48 +22,39 @@ const styles = theme => ({
 });
 
 
+
 class CopyToClipboard extends React.Component {
     constructor(props) {
         super(props);
     }
 
     state = {
-        amount: '',
         value: 'portal.aerobase.io',
-        weight: '',
-        showPassword: false,
     };
 
-    handleCopyValue = () => {
-        this.setState({showPassword: !this.state.showPassword});
-    };
-
-    handleChange = prop => event => {
-        this.setState({ [prop]: event.target.value });
-    };
-
-    handleCopyValue = event => {
-        event.preventDefault();
-    };
+    componentDidMount() {
+        const clipboard = new Clipboard(this.refs.copybutton, {
+            target: (trigger) => {
+                return this.refs.serverendpoint;
+            }
+        });
+    }
 
     render() {
         const { classes } = this.props;
 
         return (
             <FormControl className={classes.formControl} disabled>
-                <InputLabel htmlFor="password">Server Endpoint</InputLabel>
+                <InputLabel htmlFor="server-endpoint">Server Endpoint</InputLabel>
                 <Input
-                    id="adornment-password"
+                    id="server-endpoint"
+                    ref="serverendpoint"
                     type='text'
                     fullWidth={true}
                     value={this.state.value}
-                    onChange={this.handleChange('value')}
                     endAdornment={
                         <InputAdornment position="end">
-                            <IconButton
-                                onClick={this.handleCopyValue}
-                                onMouseDown={this.handleCopyValue}
-                            >
+                            <IconButton id="copy-button" ref="copybutton" onClick={this.handleClick}>
                                 <Tooltip id="tooltip-top" title="Copy" placement="top">
                                     <Visibility/>
                                 </Tooltip>
