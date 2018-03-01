@@ -13,19 +13,25 @@ const renderComponent = (Component) => {
     kc.init({ onLoad: 'login-required' }).success(authenticated => {
         if (authenticated) {
             console.log("kc.idToken.preferred_username: " + kc.idTokenParsed.preferred_username);
+            var username = kc.idTokenParsed.preferred_username;
+            var realmname = username.replace(/[^a-zA-Z0-9]/gi, '-');
 
+            // TODO - Replace aerobase.io with external js attribute
             ReactDOM.render(
                 <AppContainer>
-                    <Component username={kc.idTokenParsed.preferred_username}/>
+                    <Component username={username} realmname={realmname + ".aerobase.io"}/>
                 </AppContainer>
                 ,
                 rootEl
             );
         }
     }).error(function() {
+        var username = "_None@"
+        var realmname = username.replace(/[^a-zA-Z0-9]/gi, '-');
+
         ReactDOM.render(
             <AppContainer>
-                <Component username='None'/>
+                <Component username={username} realmname={realmname}/>
             </AppContainer>
             ,
             rootEl

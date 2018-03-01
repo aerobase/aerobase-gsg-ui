@@ -102,7 +102,7 @@ class AppDrawer extends React.Component {
                                 </Grid>
 
                                 <Grid key="root-endpoint" item xs={12} sm={6}>
-                                    <CopyToClipboard></CopyToClipboard>
+                                    <CopyToClipboard value={this.props.realmname}></CopyToClipboard>
                                 </Grid>
 
                                 <Grid key="divider1" item xs={12}>

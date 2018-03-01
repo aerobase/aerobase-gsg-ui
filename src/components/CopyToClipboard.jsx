@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import IconButton from 'material-ui/IconButton';
 import Input, {InputLabel, InputAdornment} from 'material-ui/Input';
 import {FormControl, FormHelperText} from 'material-ui/Form';
 import Tooltip from 'material-ui/Tooltip';
 import {withStyles} from "material-ui/styles";
-import Clipboard from 'react-clipboard.js'
-
+import ClipboardJS from 'clipboard'
 import Visibility from 'material-ui-icons/ContentCopy';
 
 const styles = theme => ({
@@ -19,42 +17,45 @@ const styles = theme => ({
     withoutLabel: {
         marginTop: theme.spacing.unit * 3,
     },
-});
 
+    copybutton: {},
+});
 
 
 class CopyToClipboard extends React.Component {
     constructor(props) {
         super(props);
+
+        this.onSuccess = this.onSuccess.bind(this);
     }
 
     state = {
-        value: 'portal.aerobase.io',
+        value: this.props.value,
     };
 
-    componentDidMount() {
-        const clipboard = new Clipboard(this.refs.copybutton, {
-            target: (trigger) => {
-                return this.refs.serverendpoint;
-            }
-        });
+    onSuccess() {
+        console.info('successfully coppied');
     }
 
     render() {
-        const { classes } = this.props;
+        console.log(this.props.realmname);
+        const {classes} = this.props;
+
+        new ClipboardJS('.copybutton');
 
         return (
-            <FormControl className={classes.formControl} disabled>
+
+
+            <FormControl className={classes.formControl} readonly>
                 <InputLabel htmlFor="server-endpoint">Server Endpoint</InputLabel>
                 <Input
-                    id="server-endpoint"
-                    ref="serverendpoint"
+                    id="serverendpoint"
                     type='text'
                     fullWidth={true}
                     value={this.state.value}
                     endAdornment={
                         <InputAdornment position="end">
-                            <IconButton id="copy-button" ref="copybutton" onClick={this.handleClick}>
+                            <IconButton id="copybutton" className="copybutton" data-clipboard-target="#serverendpoint" onClick={this.onSuccess}>
                                 <Tooltip id="tooltip-top" title="Copy" placement="top">
                                     <Visibility/>
                                 </Tooltip>

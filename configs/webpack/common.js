@@ -48,6 +48,7 @@ module.exports = {
   externals: {
     'react': 'React',
     'react-dom': 'ReactDOM',
+    'clipboard': 'ClipboardJS',
   },
   performance: {
     hints: false,
