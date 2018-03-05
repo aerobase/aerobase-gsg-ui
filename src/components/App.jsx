@@ -51,6 +51,7 @@ const styles = theme => ({
             height: 'calc(100% - 64px)',
             marginTop: 64,
         },
+        overflow: 'auto',
     },
 
     chromeIssueMargin:{
@@ -90,7 +91,7 @@ class AppDrawer extends React.Component {
 
                     <MuiThemeProvider theme={themeLight}>
                         <main className={classes.content}>
-                            <Grid container className={classes.container} justify="left" spacing="16">
+                            <Grid container className={classes.container} justify="left" spacing="16" >
                                 <Grid key="gs" item xs={12} sm={6}>
                                     <Typography
                                         variant="body1">{'To be able to use the Aerobase Server you need to create a PushApplication and at least one Variant.'}
@@ -101,7 +102,7 @@ class AppDrawer extends React.Component {
                                     </Typography>
                                 </Grid>
 
-                                <Grid key="root-endpoint" item xs={12} sm={6}>
+                                <Grid key="root-endpoint" item xs={12} sm={4}>
                                     <CopyToClipboard value={this.props.realmname}></CopyToClipboard>
                                 </Grid>
 
@@ -110,11 +111,10 @@ class AppDrawer extends React.Component {
                                 </Grid>
 
                                 <Grid container className={classes.container} justify="left" spacing="16">
-                                    <Grid key="qsg" item xs={12}>
+                                    <Grid key="qsg" item xs={8}>
                                         <Typography variant="title">{'Quick Start Guides'}</Typography>
-
                                     </Grid>
-                                    <Grid key="qsg1" item xs={8}>
+                                    <Grid key="qsg1" item xs={12}>
                                         <Card fluid={true}
                                               href='https://aerobase.atlassian.net/wiki/display/ARB/JavaScript'
                                               target='_blank'
@@ -138,7 +138,7 @@ class AppDrawer extends React.Component {
                                             </Card.Content>
                                         </Card>
                                     </Grid>
-                                    <Grid key="qsg2" item xs={8}>
+                                    <Grid key="qsg2" item xs={12}>
                                         <Card fluid={true}
                                               href='https://aerobase.atlassian.net/wiki/display/ARB/Android'
                                               target='_blank'
@@ -162,7 +162,7 @@ class AppDrawer extends React.Component {
                                         </Card>
 
                                     </Grid>
-                                    <Grid key="qsg3" item xs={8}>
+                                    <Grid key="qsg3" item xs={12 }>
                                         <Card fluid={true}
                                               href='https://aerobase.atlassian.net/wiki/display/ARB/iOS'
                                               target='_blank'
@@ -196,7 +196,7 @@ class AppDrawer extends React.Component {
 
                                     </Grid>
 
-                                    <Grid key="ur1" item xs={6} sm={3}>
+                                    <Grid key="ur1" item xs={8} sm={4}>
                                         <Card fluid={true}
                                               href='https://aerobase.atlassian.net/wiki/spaces/ARB/overview'
                                               target='_blank'
@@ -214,13 +214,13 @@ class AppDrawer extends React.Component {
 
                                                 </Card.Header>
                                                 <Card.Meta>
-                                                    Understand how Aerobase works.
+                                                    <Typography variant="body3" noWrap>Understand how Aerobase works.</Typography>
                                                 </Card.Meta>
                                             </Card.Content>
 
                                         </Card>
                                     </Grid>
-                                    <Grid key="ur2" item xs={6} sm={3}>
+                                    <Grid key="ur2" item xs={8} sm={4}>
                                         <Card fluid={true}
                                               href='https://aerobase.atlassian.net/projects/ARB?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page'
                                               target='_blank'>
@@ -236,13 +236,13 @@ class AppDrawer extends React.Component {
                                                     </Grid>
 
                                                 </Card.Header>
-                                                <Card.Meta>
-                                                    Stay on top of our latest features
+                                                <Card.Meta >
+                                                    <Typography variant="body3" noWrap>Stay on top of our latest features</Typography>
                                                 </Card.Meta>
                                             </Card.Content>
                                         </Card>
                                     </Grid>
-                                    <Grid key="ur3" item xs={6} sm={3}>
+                                    <Grid key="ur3" item xs={8} sm={4}>
                                         <Card fluid={true}
                                               href='http://stackoverflow.com/questions/tagged/aerobase'
                                               target='_blank'>
@@ -259,7 +259,7 @@ class AppDrawer extends React.Component {
 
                                                 </Card.Header>
                                                 <Card.Meta>
-                                                    Ask any questions and tag us
+                                                    <Typography variant="body3" noWrap>Ask any questions and tag us</Typography>
                                                 </Card.Meta>
                                             </Card.Content>
                                         </Card>
@@ -267,7 +267,7 @@ class AppDrawer extends React.Component {
                                 </Grid>
 
                                 <Grid container className={classes.container} justify="left" spacing="16">
-                                    <Grid key="ur1" item xs={6} sm={3}>
+                                    <Grid key="ur1" item xs={8} sm={4}>
                                         <Card fluid={true}
                                               href='https://github.com/Aerobase'
                                               target='_blank'>
@@ -284,12 +284,12 @@ class AppDrawer extends React.Component {
 
                                                 </Card.Header>
                                                 <Card.Meta>
-                                                    Contribute to Aerobase
+                                                    <Typography variant="body3" noWrap>Contribute to Aerobase</Typography>
                                                 </Card.Meta>
                                             </Card.Content>
                                         </Card>
                                     </Grid>
-                                    <Grid key="ur2" item xs={6} sm={3}>
+                                    <Grid key="ur2" item xs={8} sm={4}>
                                         <Card fluid={true}
                                               href='https://aerobase.slack.com/'
                                               target='_blank'>
@@ -306,12 +306,12 @@ class AppDrawer extends React.Component {
 
                                                 </Card.Header>
                                                 <Card.Meta>
-                                                    Connects with Aerobase developers
+                                                    <Typography variant="body3" noWrap>Connects with Aerobase developers</Typography>
                                                 </Card.Meta>
                                             </Card.Content>
                                         </Card>
                                     </Grid>
-                                    <Grid key="ur3" item xs={6} sm={3}>
+                                    <Grid key="ur3" item xs={8} sm={4}>
                                         <Card fluid={true}
                                               href='mailto:support@aerobase.io'>
                                             <Card.Content>
@@ -327,7 +327,7 @@ class AppDrawer extends React.Component {
 
                                                 </Card.Header>
                                                 <Card.Meta>
-                                                    Get direct support from our developers
+                                                    <Typography variant="body3" noWrap>Get direct support from our developers</Typography>
                                                 </Card.Meta>
                                             </Card.Content>
                                         </Card>

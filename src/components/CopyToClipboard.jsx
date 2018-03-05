@@ -11,7 +11,7 @@ import Visibility from 'material-ui-icons/ContentCopy';
 const styles = theme => ({
     formControl: {
         margin: theme.spacing.unit,
-        width: '500px',
+        width: '100%',
     },
 
     withoutLabel: {
