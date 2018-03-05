@@ -15,7 +15,6 @@ import SettingsIcon from 'material-ui-icons/Settings';
 import BookIcon from 'material-ui-icons/Book';
 import LinkIcon from 'material-ui-icons/Link';
 import UserIcon from 'material-ui-icons/AccountBox';
-import config from 'react-global-configuration';
 
 const drawerWidth = 300;
 
@@ -64,17 +63,22 @@ const styles = theme => ({
 class SideBarMenu extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            activeItem: 'settings'
-        };
-
+        this.handleItemClick = this.handleItemClick.bind(this);
     }
 
-    handleItemClick = (e, {name}) => this.setState({activeItem: name})
+    state = {
+        activeItem: 'settings',
+    };
+
+    handleItemClick(e, value) {
+        e.stopPropagation();
+        this.setState({
+            activeItem: value,
+        });
+    }
 
     render() {
-        const {activeItem} = this.state;
+        const {activeItem} = this.state
         const {classes, theme} = this.props;
 
         const drawer = (
@@ -98,24 +102,24 @@ class SideBarMenu extends React.Component {
                 <Divider className={classes.chromeIssueMargin}/>
 
                 <List>
-                    <MenuList>
-                        <MenuItem name='settings' selected={activeItem === 'settings'} onClick={this.handleItemClick}>
+                    <MenuList >
+                        <MenuItem selected={activeItem === 'settings'} onClick={(e) => this.handleItemClick(e, 'settings')}>
                             <ListItemIcon>
-                                <SettingsIcon/>
+                                <SettingsIcon onClick={(e) => this.handleItemClick(e, 'settings')}/>
                             </ListItemIcon>
-                            <ListItemText primary="Your App Configuration"/>
+                            <ListItemText primary="Your App Configuration" onClick={(e) => this.handleItemClick(e, 'settings')}/>
                         </MenuItem>
-                        <MenuItem name='guide' selected={activeItem === 'guide'} onClick={this.handleItemClick}>
+                        <MenuItem selected={activeItem === 'quickstart'} onClick={(e) => this.handleItemClick(e, 'quickstart')}>
                             <ListItemIcon>
-                                <BookIcon/>
+                                <BookIcon onClick={(e) => this.handleItemClick(e, 'quickstart')}/>
                             </ListItemIcon>
-                            <ListItemText primary="Quick Start Guides"/>
+                            <ListItemText primary="Quick Start Guides" onClick={(e) => this.handleItemClick(e, 'quickstart')}/>
                         </MenuItem>
-                        <MenuItem name='resources' selected={activeItem === 'resources'} onClick={this.handleItemClick}>
+                        <MenuItem selected={activeItem === 'resources'} onClick={(e) => this.handleItemClick(e, 'resources')}>
                             <ListItemIcon>
-                                <LinkIcon/>
+                                <LinkIcon onClick={(e) => this.handleItemClick(e, 'resources')}/>
                             </ListItemIcon>
-                            <ListItemText primary="Useful Resources"/>
+                            <ListItemText primary="Useful Resources" onClick={(e) => this.handleItemClick(e, 'resources')}/>
                         </MenuItem>
                     </MenuList>
                 </List>
