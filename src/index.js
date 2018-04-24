@@ -16,10 +16,11 @@ const renderComponent = (Component) => {
             var username = kc.idTokenParsed.preferred_username;
             var realmname = username.replace(/[^a-zA-Z0-9]/gi, '-');
 
+            window.parent.postMessage(realmname,"http://portal." + window.location.hostname);
             // TODO - Replace aerobase.io with external js attribute
             ReactDOM.render(
                 <AppContainer>
-                    <Component username={username} realmname={realmname + ".aerobase.io"}/>
+                    <Component username={username} realmname={realmname + "." + window.location.hostname}/>
                 </AppContainer>
                 ,
                 rootEl

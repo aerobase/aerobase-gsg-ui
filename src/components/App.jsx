@@ -116,7 +116,7 @@ class AppDrawer extends React.Component {
                                     </Grid>
                                     <Grid key="qsg1" item xs={12}>
                                         <Card fluid={true}
-                                              href='https://aerobase.atlassian.net/wiki/display/ARB/JavaScript'
+                                              href='https://aerobase.atlassian.net/wiki/display/ARB/Hybrid'
                                               target='_blank'
                                         >
                                             <Card.Content>
@@ -127,7 +127,7 @@ class AppDrawer extends React.Component {
                                                             <WebIcon/>
                                                         </Grid>
                                                         <Grid item className={classes.cardTitle}>
-                                                            <span>Web</span>
+                                                            <span>Hybrid</span>
                                                         </Grid>
                                                     </Grid>
 
