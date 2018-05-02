@@ -55,6 +55,7 @@
     "material-ui": "^1.0.0-beta.34",
     "material-ui-icons": "^1.0.0-beta.17",
     "node-sass": "^4.7.2",
+    "parse-domain": "^2.0.0",
     "postcss-loader": "^2.1.0",
     "react": "^16.2.0",
     "react-addons-test-utils": "^15.6.2",
