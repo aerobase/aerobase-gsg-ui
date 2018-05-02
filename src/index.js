@@ -6,7 +6,7 @@ import Keycloak from "keycloak-js";
 import App from "components/App";
 
 const rootEl = document.getElementById("root");
-const parseDomain = require('assets/js/parse-domain/lib/parseDomain.js');
+const psl = require('psl');
 
 const renderComponent = (Component) => {
     const kc = Keycloak('../unifiedpush-server/rest/keycloak/config/gsg');
@@ -17,8 +17,8 @@ const renderComponent = (Component) => {
             var username = kc.idTokenParsed.preferred_username;
             // Replace any none a-zA-Z0-9 characters to '-'
             var realmname = username.replace(/[^a-zA-Z0-9]/gi, '-');
-            var ps = parseDomain(window.location.hostname);
-            var topDomain = ps.domain + '.' + ps.tld;
+            var ps = psl.parse(window.location.hostname);
+            var topDomain = ps.domain;
 
             // TODO - Get portal subdomain from an API Call
             window.parent.postMessage(realmname, window.location.protocol + "//portal." + topDomain);
@@ -34,7 +34,8 @@ const renderComponent = (Component) => {
     }).error(function() {
         var username = "_None@";
         var realmname = username.replace(/[^a-zA-Z0-9]/gi, '-');
-        var topDomain = "localhost";
+        var topDomain = "localhsot";
+
 
         ReactDOM.render(
             <AppContainer>
