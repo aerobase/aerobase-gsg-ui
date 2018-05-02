@@ -20,23 +20,25 @@ const renderComponent = (Component) => {
             var ps = parseDomain(window.location.hostname);
             var topDomain = ps.domain + '.' + ps.tld;
 
-            window.parent.postMessage(realmname, window.location.protocol + "://portal." + topDomain);
+            // TODO - Get portal subdomain from an API Call
+            window.parent.postMessage(realmname, window.location.protocol + "//portal." + topDomain);
 
             ReactDOM.render(
                 <AppContainer>
-                    <Component username={username} realmname={realmname + "." + topDomain}/>
+                    <Component username={username} realmname={realmname} topDomain={topDomain}/>
                 </AppContainer>
                 ,
                 rootEl
             );
         }
     }).error(function() {
-        var username = "_None@"
+        var username = "_None@";
         var realmname = username.replace(/[^a-zA-Z0-9]/gi, '-');
+        var topDomain = "localhost";
 
         ReactDOM.render(
             <AppContainer>
-                <Component username={username} realmname={realmname}/>
+                <Component username={username} realmname={realmname} topDomain={topDomain}/>
             </AppContainer>
             ,
             rootEl

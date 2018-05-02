@@ -76,14 +76,40 @@ class AppDrawer extends React.Component {
     constructor(props) {
         super(props);
         this.handleDrawerToggle = this.handleDrawerToggle.bind(this);
+        this.handleUps = this.handleUps.bind(this);
+    }
+
+    componentWillMount() {
+        this.handleUps();
     }
 
     state = {
         mobileOpen: false,
     };
 
+    ups = {
+        href: "https://portal.aerobase.io/push",
+    }
+
     handleDrawerToggle = () => {
         this.setState({mobileOpen: !this.state.mobileOpen});
+    };
+
+    inIframe = () => {
+        try {
+            return window.self !== window.top;
+        } catch (e) {
+            return true;
+        }
+    }
+
+    handleUps = () => {
+        if (this.inIframe()){
+            this.ups.href = window.location.protocol + "//" + window.location.hostname + "/unifiedpush-server/"
+        }else {
+            // TODO - Get portal subdomain from an API Call
+            this.ups.href = window.location.protocol + "//portal." + this.props.topDomain + "/push";
+        }
     };
 
     render() {
@@ -101,16 +127,16 @@ class AppDrawer extends React.Component {
                             <Grid container className={classes.container} justify="left" spacing="16" >
                                 <Grid key="gs" item xs={12} sm={6}>
                                     <Typography
-                                        variant="body2">{'To be able to use the Aerobase Server you need to create a PushApplication and at least one Variant.'}
+                                        variant="body2">{'To be able to use the Aerobase Server you need to create a PushApplication and at least one Variant'}
                                     </Typography>
                                     <Typography
                                         variant="body1">
-                                        {'The wizard is launched when clicking the Create Application button on the PUSH NOTIFICATION page:'}
+                                        {'The wizard is launched when clicking the Create Application button on the '} <a href={this.ups.href}>PUSH NOTIFICATION</a>{' page'}
                                     </Typography>
                                 </Grid>
 
                                 <Grid key="root-endpoint" item xs={12} sm={4}>
-                                    <CopyToClipboard value={this.props.realmname}></CopyToClipboard>
+                                    <CopyToClipboard value={this.props.realmname + "." + this.props.topDomain}></CopyToClipboard>
                                 </Grid>
 
                                 <Grid key="divider1" item xs={12}>
