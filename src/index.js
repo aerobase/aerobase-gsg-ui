@@ -6,7 +6,7 @@ import Keycloak from "keycloak-js";
 import App from "components/App";
 
 const rootEl = document.getElementById("root");
-const parseDomain = require('parse-domain');
+const parseDomain = require('assets/js/parse-domain/lib/parseDomain.js');
 
 const renderComponent = (Component) => {
     const kc = Keycloak('../unifiedpush-server/rest/keycloak/config/gsg');

@@ -49,6 +49,7 @@ module.exports = {
     'react': 'React',
     'react-dom': 'ReactDOM',
     'clipboard': 'ClipboardJS',
+    'parse-domain': 'parseDomain',
   },
   performance: {
     hints: false,
