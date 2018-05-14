@@ -88,7 +88,7 @@ class AppDrawer extends React.Component {
     };
 
     ups = {
-        href: "https://portal.aerobase.io/push",
+        href: "https://cloud.aerobase.io/push",
     }
 
     handleDrawerToggle = () => {
@@ -107,8 +107,8 @@ class AppDrawer extends React.Component {
         if (this.inIframe()){
             this.ups.href = window.location.protocol + "//" + window.location.hostname + "/unifiedpush-server/"
         }else {
-            // TODO - Get portal subdomain from an API Call
-            this.ups.href = window.location.protocol + "//portal." + this.props.topDomain + "/push";
+            // TODO - Get portal context from an API Call
+            this.ups.href = window.location.protocol + "//" + window.location.hostname + "/portal/push";
         }
     };
 

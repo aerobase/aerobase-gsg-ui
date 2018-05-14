@@ -20,8 +20,7 @@ const renderComponent = (Component) => {
             var ps = psl.parse(window.location.hostname);
             var topDomain = ps.domain;
 
-            // TODO - Get portal subdomain from an API Call
-            window.parent.postMessage(realmname, window.location.protocol + "//portal." + topDomain);
+            window.parent.postMessage(realmname, window.location.protocol + "//" + window.location.hostname);
 
             ReactDOM.render(
                 <AppContainer>
