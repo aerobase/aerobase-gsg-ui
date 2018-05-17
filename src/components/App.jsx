@@ -127,11 +127,11 @@ class AppDrawer extends React.Component {
                             <Grid container className={classes.container} justify="left" spacing="16" >
                                 <Grid key="gs" item xs={12} sm={6}>
                                     <Typography
-                                        variant="body2">{'To be able to use the Aerobase Server you need to create a PushApplication and at least one Variant'}
+                                        variant="body2">{'To be able to use the Aerobase Server you need to create an Application and at least one Variant'}
                                     </Typography>
                                     <Typography
                                         variant="body1">
-                                        {'The wizard is launched when clicking the Create Application button on the '} <a href={this.ups.href}>PUSH NOTIFICATION</a>{' page'}
+                                        {'The wizard is launched when clicking the Create Application button on the '} <a href={this.ups.href}>APPLICATIONS</a>{' page'}
                                     </Typography>
                                 </Grid>
 
