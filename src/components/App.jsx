@@ -88,28 +88,17 @@ class AppDrawer extends React.Component {
     };
 
     ups = {
-        href: "https://cloud.aerobase.io/push",
+        href: "https://aerobase.io/portal/push",
     }
 
     handleDrawerToggle = () => {
         this.setState({mobileOpen: !this.state.mobileOpen});
     };
 
-    inIframe = () => {
-        try {
-            return window.self !== window.top;
-        } catch (e) {
-            return true;
-        }
-    }
-
     handleUps = () => {
-        if (this.inIframe()){
-            this.ups.href = window.location.protocol + "//" + window.location.hostname + "/unifiedpush-server/"
-        }else {
-            // TODO - Get portal context from an API Call
-            this.ups.href = window.location.protocol + "//" + window.location.hostname + "/portal/push";
-        }
+        this.ups.href = window.location.protocol + "//" + window.location.hostname + "/unifiedpush-server/"
+        // TODO - Throw change menu item message to wrapper iframe
+        // TODO - Throw login event to wrapper iframe
     };
 
     render() {
