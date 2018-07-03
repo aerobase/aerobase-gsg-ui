@@ -1,4 +1,5 @@
 .idea/
 dist/
+node/
 node_modules/
 tests/__coverage__/
