@@ -4,6 +4,7 @@ import {AppContainer} from "react-hot-loader";
 import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
 import Keycloak from "keycloak-js";
 import App from "components/App";
+import 'semantic-ui-css/semantic.min.css';
 
 const rootEl = document.getElementById("root");
 const psl = require('psl');

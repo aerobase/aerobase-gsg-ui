@@ -78,6 +78,8 @@
   },
   "postcss": {},
   "dependencies": {
-    "prop-types": "latest"
+    "google-fonts-webpack-plugin": "^0.4.4",
+    "prop-types": "latest",
+    "semantic-ui-css": "^2.4.1"
   }
 }

@@ -3,3 +3,4 @@ dist/
 node/
 node_modules/
 tests/__coverage__/
+.vscode/
