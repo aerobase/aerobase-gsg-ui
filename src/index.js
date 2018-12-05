@@ -5,6 +5,7 @@ import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
 import Keycloak from "keycloak-js";
 import App from "components/App";
 import 'semantic-ui-css/semantic.min.css';
+import './assets/img/favicon.ico';
 
 const rootEl = document.getElementById("root");
 const psl = require('psl');
