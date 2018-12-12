@@ -20,7 +20,7 @@
 
     <groupId>org.aerogear.unifiedpush</groupId>
     <artifactId>getting-started-ui</artifactId>
-    <version>1.2.0</version>
+    <version>2.1.0</version>
     <packaging>pom</packaging>
     <name>Aerobase Getting Started UI</name>
 
