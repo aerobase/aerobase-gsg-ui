@@ -52,7 +52,7 @@
     "image-webpack-loader": "^4.2.0",
     "jest": "^22.4.3",
     "jshint": "^2.9.5",
-    "keycloak-js": "4.7.0",
+    "keycloak-js": "4.8.1",
     "material-ui": "^1.0.0-beta.44",
     "material-ui-icons": "^1.0.0-beta.36",
     "node-sass": "^4.9.0",
