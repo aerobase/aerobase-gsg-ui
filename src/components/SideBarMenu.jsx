@@ -18,10 +18,11 @@ import UserIcon from 'material-ui-icons/AccountBox';
 
 const drawerWidth = 300;
 
-const themeDark = createMuiTheme({
+const themeDark = createMuiTheme ({
     palette: {
         type: 'dark', // Switching the dark mode on is a single property value change.
     },
+
     overrides: {
         MuiDrawer: {
             // Name of the styleSheet
@@ -51,7 +52,7 @@ const styles = theme => ({
     },
 
     userTitle:{
-        paddingTop: '10px',
+        paddingTop: '9px',
         paddingLeft: '10px',
     },
 
@@ -93,7 +94,7 @@ class SideBarMenu extends React.Component {
                             </Grid>
                             <Grid item className={classes.cardTitle}>
                                 <Typography className={classes.userTitle}
-                                    variant="title">{this.props.username}</Typography>
+                                    variant="headline">{this.props.username}</Typography>
                             </Grid>
                         </Grid>
                     </div>

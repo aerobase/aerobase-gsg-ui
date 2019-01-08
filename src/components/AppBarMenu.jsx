@@ -46,7 +46,7 @@ class AppBarMenu extends React.Component {
                     >
                         <MenuIcon/>
                     </IconButton>
-                    <Typography variant="title" color="inherit" noWrap>
+                    <Typography variant="headline" color="inherit" noWrap>
                         Getting Started
                     </Typography>
                 </Toolbar>

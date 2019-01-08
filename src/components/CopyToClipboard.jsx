@@ -31,6 +31,9 @@ class CopyToClipboard extends React.Component {
 
     state = {
         value: this.props.value,
+        label: this.props.label,
+        htmlFor: this.props.htmlFor,
+        htmlForTag: "#" + this.props.htmlFor
     };
 
     onSuccess() {
@@ -44,18 +47,16 @@ class CopyToClipboard extends React.Component {
         new ClipboardJS('.copybutton');
 
         return (
-
-
             <FormControl className={classes.formControl} readonly>
-                <InputLabel htmlFor="server-endpoint">Server Endpoint</InputLabel>
+                <InputLabel htmlFor="server-endpoint">{this.state.label}</InputLabel>
                 <Input
-                    id="serverendpoint"
+                    id={this.state.htmlFor}
                     type='text'
                     fullWidth={true}
                     value={this.state.value}
                     endAdornment={
                         <InputAdornment position="end">
-                            <IconButton id="copybutton" className="copybutton" data-clipboard-target="#serverendpoint" onClick={this.onSuccess}>
+                            <IconButton id="copybutton" className="copybutton" data-clipboard-target={this.state.htmlForTag} onClick={this.onSuccess}>
                                 <Tooltip id="tooltip-top" title="Copy" placement="top">
                                     <Visibility/>
                                 </Tooltip>
@@ -64,7 +65,6 @@ class CopyToClipboard extends React.Component {
                     }
                 />
             </FormControl>
-
         );
     }
 }

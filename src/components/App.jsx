@@ -19,11 +19,19 @@ const themeLight = createMuiTheme({
     },
 
     typography: {
+        // Use the system font instead of the default Roboto font.
+        fontFamily: [
+            'Roboto',
+            'Helvetica',
+            'Arial',
+            'sans-serif'
+        ].join(','),
 
         // In Japanese the characters are usually larger.
-        fontSize: 14,
-        htmlFontSize: 14,
+
+        fontSize: 16,
     },
+
 });
 
 const styles = theme => ({
@@ -76,29 +84,33 @@ class AppDrawer extends React.Component {
     constructor(props) {
         super(props);
         this.handleDrawerToggle = this.handleDrawerToggle.bind(this);
-        this.handleUps = this.handleUps.bind(this);
+        this.handleUps = this.handleHrefs.bind(this);
     }
 
     componentWillMount() {
-        this.handleUps();
+        this.handleHrefs();
     }
 
     state = {
         mobileOpen: false,
     };
 
-    ups = {
-        href: "https://aerobase.io/portal/push",
+    consoles = {
+        top: "https://cloud.aerobase.io/portal/",
+        ups: "https://cloud.aerobase.io/portal/push",
+        iam: "https://cloud.aerobase.io/portal/users",
+        portaliam: "https://cloud.aerobase.io/portal/users",
+        portalups: "https://cloud.aerobase.io/portal/push",
     }
 
     handleDrawerToggle = () => {
         this.setState({mobileOpen: !this.state.mobileOpen});
     };
 
-    handleUps = () => {
-        this.ups.href = window.location.protocol + "//" + window.location.hostname + "/unifiedpush-server/"
-        // TODO - Throw change menu item message to wrapper iframe
-        // TODO - Throw login event to wrapper iframe
+    handleHrefs = () => {
+        this.consoles.top = window.location.protocol + "//" + this.props.realmname + "." + this.props.topDomain;
+        this.consoles.iam = window.location.protocol + "//" + this.props.realmname + "." + this.props.topDomain + "/auth/admin/" + this.props.realmname + "/console/";
+        this.consoles.ups = window.location.protocol + "//" + this.props.realmname + "." + this.props.topDomain + "/unifiedpush-server/";
     };
 
     render() {
@@ -114,18 +126,55 @@ class AppDrawer extends React.Component {
                     <MuiThemeProvider theme={themeLight}>
                         <main className={classes.content}>
                             <Grid container className={classes.container} justify="left" spacing="16" >
-                                <Grid key="gs" item xs={12} sm={6}>
+                                <Grid key="gs" item xs={12} sm={12}>
                                     <Typography
-                                        variant="body2">{'To be able to use the Aerobase Server you need to create an Application and at least one Variant'}
-                                    </Typography>
-                                    <Typography
-                                        variant="body1">
-                                        {'The wizard is launched when clicking the Create Application button on the '} <a href={this.ups.href}>APPLICATIONS</a>{' page'}
+                                        variant="headline">{'Wellcome to Aerobase server console'}
                                     </Typography>
                                 </Grid>
+                                
+                                
+                                <Grid key="gs" item xs={12} sm={6}>
+                                    <Typography
+                                        variant="body1" paragraph="true">
+                                        {'To help you get started, we have published a '}<a href="https://github.com/aerobase-demo/angular-oauth2-starter">demo application</a>{' under your private '}<a href={this.consoles.top}>subdomain</a>{'.'}<br/>
+                                        {'You can start building your next awesome app using our '}<a href="https://github.com/aerobase/aerobase-js-sdk/">JavaScript SDK</a>
+                                    </Typography>
+                                </Grid>                            
+                                
 
                                 <Grid key="root-endpoint" item xs={12} sm={4}>
-                                    <CopyToClipboard value={this.props.realmname + "." + this.props.topDomain}></CopyToClipboard>
+                                    <Grid key="root-endpoint" >
+                                        <CopyToClipboard label="Demo Access" value={this.consoles.top} htmlFor="primery-endpoint"></CopyToClipboard>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid key="gs" item xs={12} sm={6}>
+                                    <Typography
+                                        variant="body1" paragraph="true">
+                                        {'Your IAM console is available both from our '}<a href={this.consoles.portaliam}>identity & access</a>{' page or directly from your subdomain.'}<br/>
+                                        {"In order to login directly from your "}<a href={this.consoles.iam}>subdomain</a>{" console, you must first reset your 'admin' user password"}
+                                    </Typography>
+                                </Grid>                            
+                                
+
+                                <Grid key="root-endpoint" item xs={12} sm={4}>
+                                    <Grid key="root-endpoint" >
+                                        <CopyToClipboard label="IAM Console" value={this.consoles.iam} htmlFor="iam-endpoint"></CopyToClipboard>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid key="gs" item xs={12} sm={6}>
+                                    <Typography
+                                        variant="body1" paragraph="true">
+                                        {'Your Push Notification console is available here '}<a href={this.consoles.portalups}>APPLICATIONS</a><br/>
+                                    </Typography>
+                                </Grid>                            
+                                
+
+                                <Grid key="root-endpoint" item xs={12} sm={4}>
+                                    <Grid key="root-endpoint" >
+                                        <CopyToClipboard label="Push Notifications Console" value={this.consoles.ups} htmlFor="ups-endpoint"></CopyToClipboard>
+                                    </Grid> 
                                 </Grid>
 
                                 <Grid key="divider1" item xs={12}>
