@@ -152,7 +152,7 @@ class AppDrawer extends React.Component {
                                     <Typography
                                         variant="body1" paragraph="true">
                                         {'Your IAM console is available both from our '}<a href={this.consoles.portaliam}>identity & access</a>{' page or directly from your subdomain.'}<br/>
-                                        {"In order to login directly from your "}<a href={this.consoles.iam}>subdomain</a>{" console, you must first reset your 'admin' user password"}
+                                        {"In order to login directly from your "}<a href={this.consoles.iam}>subdomain</a>{" console, you must first reset your 'admin' password."}
                                     </Typography>
                                 </Grid>                            
                                 
