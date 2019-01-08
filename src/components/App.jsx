@@ -136,7 +136,7 @@ class AppDrawer extends React.Component {
                                 <Grid key="gs" item xs={12} sm={6}>
                                     <Typography
                                         variant="body1" paragraph="true">
-                                        {'To help you get started, we have published a '}<a href="https://github.com/aerobase-demo/angular-oauth2-starter">demo application</a>{' under your private '}<a href={this.consoles.top}>subdomain</a>{'.'}<br/>
+                                        {'To help you get started, we have published a demo application under your private '}<a href={this.consoles.top}>subdomain</a>{'.'}<br/>
                                         {'You can start building your next awesome app using our '}<a href="https://github.com/aerobase/aerobase-js-sdk/">JavaScript SDK</a>
                                     </Typography>
                                 </Grid>                            
