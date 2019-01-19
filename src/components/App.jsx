@@ -111,6 +111,9 @@ class AppDrawer extends React.Component {
         this.consoles.top = window.location.protocol + "//" + this.props.realmname + "." + this.props.topDomain;
         this.consoles.iam = window.location.protocol + "//" + this.props.realmname + "." + this.props.topDomain + "/auth/admin/" + this.props.realmname + "/console/";
         this.consoles.ups = window.location.protocol + "//" + this.props.realmname + "." + this.props.topDomain + "/unifiedpush-server/";
+
+        this.consoles.portaliam = window.location.protocol + "//" + window.location.hostname + "/auth/admin/master/console/"
+        this.consoles.portalups = window.location.protocol + "//" + window.location.hostname + "/unifiedpush-server/"
     };
 
     render() {
@@ -136,8 +139,8 @@ class AppDrawer extends React.Component {
                                 <Grid key="gs" item xs={12} sm={6}>
                                     <Typography
                                         variant="body1" paragraph="true">
-                                        {'To help you get started, we have published a demo application under your private '}<a href={this.consoles.top}>subdomain</a>{'.'}<br/>
-                                        {'You can start building your next awesome app using our '}<a href="https://github.com/aerobase/aerobase-js-sdk/">JavaScript SDK</a>
+                                        {'To help you get started, we have published a demo application under your private '}<a target="_blank" href={this.consoles.top}>subdomain</a>{'.'}<br/>
+                                        {'You can start building your next awesome app using our '}<a target="_blank" href="https://github.com/aerobase/aerobase-js-sdk/">JavaScript SDK</a>
                                     </Typography>
                                 </Grid>                            
                                 
@@ -152,7 +155,7 @@ class AppDrawer extends React.Component {
                                     <Typography
                                         variant="body1" paragraph="true">
                                         {'Your IAM console is available both from our '}<a href={this.consoles.portaliam}>identity & access</a>{' page or directly from your subdomain.'}<br/>
-                                        {"In order to login directly from your "}<a href={this.consoles.iam}>subdomain</a>{" console, you must first reset your 'admin' password."}
+                                        {"In order to login directly from your "}<a target="_blank" href={this.consoles.iam}>subdomain</a>{" console, you must first reset your 'admin' password."}
                                     </Typography>
                                 </Grid>                            
                                 
