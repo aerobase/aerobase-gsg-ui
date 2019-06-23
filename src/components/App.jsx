@@ -166,20 +166,6 @@ class AppDrawer extends React.Component {
                                     </Grid>
                                 </Grid>
 
-                                <Grid key="gs" item xs={12} sm={6}>
-                                    <Typography
-                                        variant="body1" paragraph="true">
-                                        {'Your Push Notification console is available here '}<a href={this.consoles.portalups}>APPLICATIONS</a><br/>
-                                    </Typography>
-                                </Grid>                            
-                                
-
-                                <Grid key="root-endpoint" item xs={12} sm={4}>
-                                    <Grid key="root-endpoint" >
-                                        <CopyToClipboard label="Push Notifications Console" value={this.consoles.ups} htmlFor="ups-endpoint"></CopyToClipboard>
-                                    </Grid> 
-                                </Grid>
-
                                 <Grid key="divider1" item xs={12}>
                                     <Divider className={classes.chromeIssueMargin}/>
                                 </Grid>
@@ -190,7 +176,7 @@ class AppDrawer extends React.Component {
                                     </Grid>
                                     <Grid key="qsg1" item xs={12}>
                                         <Card fluid={true}
-                                              href='https://aerobase.atlassian.net/wiki/display/ARB/Hybrid'
+                                              href='https://aerobase.io/docs/gsg/index.html'
                                               target='_blank'
                                         >
                                             <Card.Content>
@@ -214,7 +200,7 @@ class AppDrawer extends React.Component {
                                     </Grid>
                                     <Grid key="qsg2" item xs={12}>
                                         <Card fluid={true}
-                                              href='https://aerobase.atlassian.net/wiki/display/ARB/Android'
+                                              href='https://aerobase.io/docs/gsg/index.html'
                                               target='_blank'
                                         >
                                             <Card.Content>
@@ -238,7 +224,7 @@ class AppDrawer extends React.Component {
                                     </Grid>
                                     <Grid key="qsg3" item xs={12 }>
                                         <Card fluid={true}
-                                              href='https://aerobase.atlassian.net/wiki/display/ARB/iOS'
+                                              href='https://aerobase.io/docs/gsg/index.html'
                                               target='_blank'
                                         >
                                             <Card.Content>
@@ -272,7 +258,7 @@ class AppDrawer extends React.Component {
 
                                     <Grid key="ur1" item xs={8} sm={4}>
                                         <Card fluid={true}
-                                              href='https://aerobase.atlassian.net/wiki/spaces/ARB/overview'
+                                              href='https://aerobase.io/docs/gsg/index.html'
                                               target='_blank'
                                         >
                                             <Card.Content>
