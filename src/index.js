@@ -11,7 +11,31 @@ const rootEl = document.getElementById("root");
 const psl = require('psl');
 
 const renderComponent = (Component) => {
-    const kc = Keycloak('../unifiedpush-server/rest/keycloak/config/gsg');
+    var realm = "aerobase"
+    const defaultHref = "http://aerobase.example.com/auth"
+    const runtimeHref = window.location.protocol + "//" + window.location.hostname + "/auth"
+    
+    // Calculate subdomain if exists
+    var ps = psl.parse(window.location.hostname);
+    var topDomain = ps.domain;
+    
+    if (ps.subdomain !== null) {
+        if (ps.subdomain === "cloud") {
+            realm = "master"
+        }else{
+            realm = ps.subdomain
+        }
+    }
+
+    const config = {
+        "realm": realm,
+        "url": window.location.hostname === "localhost"? defaultHref: runtimeHref,
+        "clientId":"aerobase-gsg",
+        "ssl-required" : "external",
+        "public-client" : true
+    }
+    
+    const kc = Keycloak(config);
 
     kc.init({ onLoad: 'login-required' }).success(authenticated => {
         if (authenticated) {
@@ -19,11 +43,8 @@ const renderComponent = (Component) => {
             var username = kc.idTokenParsed.preferred_username;
             // Replace any none a-zA-Z0-9 characters to '-'
             var realmname = username.replace(/[^a-zA-Z0-9]/gi, '-');
-            var ps = psl.parse(window.location.hostname);
-            var topDomain = ps.domain;
 
             window.parent.postMessage(realmname, window.location.protocol + "//" + window.location.hostname);
-
             ReactDOM.render(
                 <AppContainer>
                     <Component username={username} realmname={realmname} topDomain={topDomain}/>
