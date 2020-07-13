@@ -20,7 +20,7 @@ const renderComponent = (Component) => {
     var topDomain = ps.domain;
     
     if (ps.subdomain !== null) {
-        if (ps.subdomain === "cloud") {
+        if (ps.subdomain === "cloud" || topDomain === "aerobase.org" ) {
             realm = "master"
         }else{
             realm = ps.subdomain
