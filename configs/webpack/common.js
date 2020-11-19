@@ -3,7 +3,6 @@ const {resolve} = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const GoogleFontsPlugin = require("google-fonts-webpack-plugin")
 
 module.exports = {
   resolve: {
@@ -49,12 +48,6 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'assets/js', to: 'assets/js' }
     ]),
-    new GoogleFontsPlugin({
-      fonts: [
-          { family: "Roboto", variants: [ "300", "400", "500" ] },
-          { family: "Lato", variants: [ "400", "700", "400italic", "700italic" ] },
-      ]
-  })
   ],
   externals: {
     'react': 'React',
